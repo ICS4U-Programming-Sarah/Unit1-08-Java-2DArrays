@@ -44,7 +44,7 @@ public final class TwoDimArrays {
         final File students = new File("students.txt");
 
         // Print to csv file.
-        final File fileOut = new File("marks.cvs");
+        final File fileOut = new File("marks.csv");
 
         // Declare lists.
         final List<String> listOfStud =
