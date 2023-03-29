@@ -4,13 +4,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Random;
-
+import java.util.Scanner;
 /**
-* This program uses a loop to calculates the
-* sum of numbers. It tells the user if input
-* is valid or not, by reading file.
+* This program uses 2D array to assign,
+* mark to given student.
 *
 * @author  Sarah Andrew
 * @version 1.0
@@ -49,19 +47,19 @@ public final class TwoDimArrays {
         // Declare lists.
         final List<String> listOfStud =
             new ArrayList<String>();
-        final List<String> listOfAssign = 
+        final List<String> listOfAssign =
                 new ArrayList<String>();
-        
+
         // Declare variable.
         final StringBuilder builder;
-    
+
         try {
             // Create FileWriter object to write to file.
             final FileWriter fW = new FileWriter(fileOut);
             // Create Scanner object to read from file.
             final Scanner sc = new Scanner(file);
             // Create Scanner object to read from file.
-            final Scanner scannerStu = 
+            final Scanner scannerStu =
                 new Scanner(students);
             // Create PrintWriter object to write to file.
             final PrintWriter write = new PrintWriter(fW);
@@ -81,37 +79,35 @@ public final class TwoDimArrays {
                     listOfStud.toArray(new String[0]);
             final String[] arrayOfAssign =
                     listOfAssign.toArray(new String[0]);
-            
+
             // Declare the 2D array.
             final String[][] markArrays;
 
             // Call the function.
-            markArrays = GenMarks(arrayOfStu, arrayOfAssign);
+            markArrays = genMarks(arrayOfStu, arrayOfAssign);
 
             // Usage of loop to add 2D array into csv file.
             builder = new StringBuilder();
-            for (int counter5 = 0; counter5 
+            for (int counter5 = 0; counter5
                     < markArrays.length; counter5++) {
                 // Write name in first column.
                 builder.append(markArrays[counter5][0]);
                 builder.append(", ");
 
                 // Write marks in remaining columns.
-                for (int counter6 = 1; counter6 
+                for (int counter6 = 1; counter6
                     < markArrays[counter5].length - 1; counter6++) {
                     builder.append(markArrays[counter5][counter6]);
                     builder.append(", ");
                 }
                 builder.append("\n");
             }
-            
-            
             // Write to file.
             write.print(builder.toString());
 
             // Display to user in console.
             System.out.print(builder.toString());
-                
+
             // Closes scanner & writer.
             write.close();
             sc.close();
@@ -121,7 +117,6 @@ public final class TwoDimArrays {
                     + error.getMessage());
         }
     }
-
     /**
     * This function generates a random mark,
     * and assign it to each name.
@@ -130,11 +125,11 @@ public final class TwoDimArrays {
     * @param assignArray passed.
     * @return array2DMarks.
     */
-    public static String[][] GenMarks(String[] studArray, String[]assignArray) {
+    public static String[][] genMarks(String[] studArray, String[]assignArray) {
         // Declare 2D arrays of strings.
-        String[][] array2DMarks = new 
+        final String[][] array2DMarks = new
         String[studArray.length + 1][assignArray.length + 1];
-        
+
         // Declare variable.
         final Random random = new Random();
 
@@ -157,18 +152,19 @@ public final class TwoDimArrays {
         }
 
         // Populate cell of marks into the 2D array.
-        for (int counter3 = 1; counter3 
+        for (int counter3 = 1; counter3
             < studArray.length + 1; counter3++) {
-            for (int counter4 = 1; counter4 
+            for (int counter4 = 1; counter4
                 < assignArray.length + 1; counter4++) {
                 // Generate random marks using standard dev.
-                double marks = random.nextGaussian() * 10 + 75;
-                // Set marks into positions. 
-                array2DMarks[counter3][counter4] = 
+                final double marks =
+                    random.nextGaussian() * 10 + 75;
+                // Set marks into positions.
+                array2DMarks[counter3][counter4] =
                     Integer.toString((int) marks);
             }
         }
         // Return results back to main.
-        return array2DMarks; 
+        return array2DMarks;
     }
 }
