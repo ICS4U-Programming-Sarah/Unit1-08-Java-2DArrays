@@ -98,7 +98,7 @@ public final class TwoDimArrays {
 
                 // Write marks in remaining columns.
                 for (int counter6 = 1; counter6 
-                    < markArrays[counter6].length; counter6++) {
+                    < markArrays[counter6 - 1].length; counter6++) {
                     builder.append(markArrays[counter5][counter6]);
                     builder.append(", ");
                 }
