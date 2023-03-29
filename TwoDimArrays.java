@@ -164,7 +164,8 @@ public final class TwoDimArrays {
                 // Generate random marks using standard dev.
                 double marks = random.nextGaussian() * 10 + 75;
                 // Set marks into positions. 
-                array2DMarks[counter3][counter4] = Double.toString(marks);
+                array2DMarks[counter3][counter4] = 
+                    Integer.toString((int) marks);
             }
         }
         // Return results back to main.
