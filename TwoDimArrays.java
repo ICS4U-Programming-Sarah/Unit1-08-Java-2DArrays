@@ -90,13 +90,21 @@ public final class TwoDimArrays {
 
             // Usage of loop to add 2D array into csv file.
             builder = new StringBuilder();
-            for (int rows = 0; rows < markArrays[0].length; ++rows) {
-                for (int columns = 0; columns < markArrays.length; ++columns) {
-                    builder.append(markArrays[columns][rows]);
+            for (int counter5 = 0; counter5 
+                    < markArrays.length; counter5++) {
+                // Write name in first column.
+                builder.append(markArrays[counter5][0]);
+                builder.append(", ");
+
+                // Write marks in remaining columns.
+                for (int counter6 = 1; counter6 
+                    < markArrays[counter6].length; counter6++) {
+                    builder.append(markArrays[counter5][counter6]);
                     builder.append(", ");
                 }
                 builder.append("\n");
             }
+            
             
             // Write to file.
             write.print(builder.toString());
@@ -118,8 +126,9 @@ public final class TwoDimArrays {
     * This function generates a random mark,
     * and assign it to each name.
     *
-    * @param arrayNums passed
-    * @return mean.
+    * @param studArray passed
+    * @param assignArray passed.
+    * @return array2DMarks.
     */
     public static String[][] GenMarks(String[] studArray, String[]assignArray) {
         // Declare 2D arrays of strings.
@@ -148,8 +157,10 @@ public final class TwoDimArrays {
         }
 
         // Populate cell of marks into the 2D array.
-        for (int counter3 = 1; counter3 <= studArray.length; counter3++) {
-            for (int counter4 = 1; counter4 <= assignArray.length; counter4++) {
+        for (int counter3 = 1; counter3 
+            < studArray.length + 1; counter3++) {
+            for (int counter4 = 1; counter4 
+                < assignArray.length + 1; counter4++) {
                 // Generate random marks using standard dev.
                 double marks = random.nextGaussian() * 10 + 75;
                 // Set marks into positions. 
